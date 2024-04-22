@@ -48,7 +48,8 @@ class Cuenta {
                    Documento: ${this.titular.tipoDocumento} ${this.titular.documento} \n
                    Tipo de cuenta: ${this.tipoCuenta} \n
                    Numero de cuenta: ${this.numeroCuenta} \n
-                   Saldo: ${this.saldo} pesos colombianos
+                   Saldo: ${this.saldo} pesos colombianos \n
+                   Valor de prestamos: ${this.titular.prestamo} pesos colombianos
         `)
     }
 
