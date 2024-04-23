@@ -1,3 +1,5 @@
+const Transaccion = require('./transaccion');
+
 // Creamos nuestra clase
 class Cuenta {
 
@@ -8,11 +10,14 @@ class Cuenta {
         this.numeroCuenta = numeroCuenta;
         this.contrasenia = contrasenia;
         this.saldo = saldo;
+        this.transacciones = [];
     }
 
     // Creamos nuestro metodo para depositar en nuestra cuenta
-    deepositar(cantidad) {
+    depositar(cantidad) {
         this.saldo += cantidad;
+        const deposito = new Transaccion('Depósito', cantidad);
+        this.transacciones.push(deposito);
         console.log(`Se deposito ${cantidad} pesos colombianos y el saldo es de ${this.saldo} pesos colombianos`);
     }
 
@@ -20,6 +25,8 @@ class Cuenta {
     retirar(cantidad) {
         if (cantidad <= this.saldo) {
             this.saldo -= cantidad;
+            const retiro = new Transaccion('Retiro', cantidad);
+            this.transacciones.push(retiro);
             console.log(`Se retiro ${cantidad} pesos colombianos y el saldo actual es de ${this.saldo} pesos colombianos`)
         }
         else {
@@ -43,6 +50,12 @@ class Cuenta {
                    Numero de cuenta: ${this.numeroCuenta} \n
                    Saldo: ${this.saldo} pesos colombianos
         `)
+    }
+
+    // Método para imprimir el historial de transacciones
+    imprimirHistorialTransacciones() {
+        console.log('Historial de transacciones:');
+        this.transacciones.forEach(Transaccion => console.log(Transaccion.toString()));
     }
 
 }
